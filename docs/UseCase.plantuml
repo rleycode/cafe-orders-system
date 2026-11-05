@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+
+actor "Официант" as W
+actor "Повар" as C
+actor "Администратор" as A
+
+rectangle "Система учёта заказов в кафе" {
+  usecase "Вход в систему" as LW
+  usecase "Вход в систему" as LC
+  usecase "Вход в систему" as LA
+
+  usecase "Просмотреть меню" as UC1
+  usecase "Создать заказ" as UC2
+  usecase "Изменить состав заказа" as UC3
+  usecase "Закрыть заказ\nи принять оплату" as UC4
+  usecase "Просмотреть очередь\nзаказов" as UC5
+  usecase "Отметить заказ\nготовым" as UC6
+  usecase "Управлять меню" as UC7
+  usecase "Управлять столами" as UC8
+  usecase "Управлять сотрудниками" as UC9
+  usecase "Сформировать отчёт\nпо выручке" as UC10
+  usecase "Проверить доступность\nблюда" as UC11
+  usecase "Рассчитать сумму\nзаказа" as UC12
+}
+
+W -- LW
+C -- LC
+A -- LA
+
+LW -- UC1
+LW -- UC2
+LW -- UC3
+LW -- UC4
+
+LC -- UC5
+LC -- UC6
+
+LA -- UC1
+LA -- UC2
+LA -- UC3
+LA -- UC4
+LA -- UC7
+LA -- UC8
+LA -- UC9
+LA -- UC10
+
+UC2 ..> UC11 : <<include>>
+UC2 ..> UC12 : <<include>>
+UC3 ..> UC12 : <<include>>
+@enduml
